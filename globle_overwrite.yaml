@@ -1,0 +1,190 @@
+mode: rule
+log-level: info
+ipv6: false
+
+tun:
+  enable: true
+  stack: mixed
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  route-exclude-address:
+    - 192.168.3.0/24
+
+dns:
+  enable: true
+  ipv6: false
+  listen: 127.0.0.1:1053
+  prefer-h3: false
+  cache-algorithm: arc
+  enhanced-mode: fake-ip
+  use-hosts: true
+  use-system-hosts: true
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - https://cloudflare-dns.com/dns-query#节点选择
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "geosite:private"
+    - "*.lan"
+    - "*.local"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "time.*.com"
+    - "+.pool.ntp.org"
+
+hosts:
+  6047f413-ad53.114837322.xyz: 9f6072cc-59fb-11f.88223163.xyz
+  bepbjbgp01.114837322.xyz: fe5c432e-59f5-11f1.88223163.xyz
+  bepgzbgp01.114837322.xyz: fe5c432e-59f5-11f2.88223163.xyz
+  bepshbgp01.114837322.xyz: fe5c432e-59f5-11f3.88223163.xyz
+
+proxy-groups:
+  - name: "节点选择"
+    type: select
+    proxies:
+      - "自动选择"
+      - "香港"
+      - "台湾"
+      - "日本"
+      - "新加坡"
+      - "美国"
+      - "全部节点"
+      - DIRECT
+
+  - name: "自动选择"
+    type: url-test
+    include-all: true
+    exclude-type: direct
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+
+  - name: "香港"
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "香港 | HK|Hong|🇭🇰"
+
+  - name: "台湾"
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "台湾 | TW|Taiwan|Wan|🇨🇳|🇹🇼"
+
+  - name: "日本"
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "日本 | JP|Japan|🇯🇵"
+
+  - name: "新加坡"
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "新加坡 | 狮城 | SG|Singapore|🇸🇬"
+
+  - name: "美国"
+    type: select
+    include-all: true
+    exclude-type: direct
+    filter: "美国 | US|United States|America|🇺🇸"
+
+  - name: "全部节点"
+    type: select
+    include-all: true
+    exclude-type: direct
+
+  - name: "漏网之鱼"
+    type: select
+    proxies:
+      - "节点选择"
+      - DIRECT
+
+  - name: "OpenAI"
+    type: select
+    proxies:
+      - "香港"
+      - "台湾"
+      - "日本"
+      - "新加坡"
+      - "美国"
+      - "全部节点"
+
+rule-providers:
+  Advertising_Classical_No_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Advertising_Classical_No_Resolve.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising_Classical_No_Resolve.yaml"
+  OpenAI_No_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/OpenAI_No_Resolve.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml"
+  Anthropic:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Anthropic.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Anthropic/Anthropic.yaml"
+  Microsoft_No_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Microsoft_No_Resolve.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml"
+  Apple_Classical_No_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Apple_Classical_No_Resolve.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/lkj2619/ios_rule_script/refs/heads/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml"
+  AppleID_No_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/AppleID_No_Resolve.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/lkj2619/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID_No_Resolve.yaml"
+  ChinaMax_Classical_No_IPv6_No_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/ChinaMax_Classical_No_IPv6_No_Resolve.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_Classical_No_IPv6_No_Resolve.yaml"
+  Lan_No_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Lan_No_Resolve.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan_No_Resolve.yaml"
+
+rules:
+  - DOMAIN-SUFFIX,mercadolibre.com,DIRECT
+  - RULE-SET,Advertising_Classical_No_Resolve,REJECT
+  - RULE-SET,OpenAI_No_Resolve,OpenAI
+  - RULE-SET,Anthropic,新加坡
+  - RULE-SET,Lan_No_Resolve,DIRECT
+  - RULE-SET,Microsoft_No_Resolve,DIRECT
+  - RULE-SET,ChinaMax_Classical_No_IPv6_No_Resolve,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,漏网之鱼
