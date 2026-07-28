@@ -113,11 +113,19 @@ proxy-groups:
   - name: "OpenAI"
     type: select
     proxies:
-      - "香港"
-      - "台湾"
-      - "日本"
-      - "新加坡"
       - "美国"
+      - "新加坡"
+      - "日本"
+      - "台湾"
+      - "全部节点"
+
+  - name: "Anthropic"
+    type: select
+    proxies:
+      - "美国"
+      - "新加坡"
+      - "日本"
+      - "台湾"
       - "全部节点"
 
 rule-providers:
@@ -182,7 +190,7 @@ rules:
   - DOMAIN-SUFFIX,mercadolibre.com,DIRECT
   - RULE-SET,Advertising_Classical_No_Resolve,REJECT
   - RULE-SET,OpenAI_No_Resolve,OpenAI
-  - RULE-SET,Anthropic,新加坡
+  - RULE-SET,Anthropic,Anthropic
   - RULE-SET,Lan_No_Resolve,DIRECT
   - RULE-SET,Microsoft_No_Resolve,DIRECT
   - RULE-SET,ChinaMax_Classical_No_IPv6_No_Resolve,DIRECT
