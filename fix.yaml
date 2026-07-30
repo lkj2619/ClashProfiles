@@ -1,0 +1,7 @@
+# 修正被误击或污染的分流规则
+payload:
+  ## 掘金
+  - DOMAIN-SUFFIX,juejin.cn
+  - DOMAIN-SUFFIX,juejin.im
+  ## 美客多
+  - DOMAIN-SUFFIX,mercadolibre.com
