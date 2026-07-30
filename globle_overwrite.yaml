@@ -185,9 +185,16 @@ rule-providers:
     path: ./ruleset/Lan_No_Resolve.yaml
     interval: 86400
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan_No_Resolve.yaml"
+  fix:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/fix.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/lkj2619/ClashProfiles/refs/heads/main/fix.yaml"
 
 rules:
-  - DOMAIN-SUFFIX,mercadolibre.com,DIRECT
+  - RULE-SET,fix,DIRECT
   - RULE-SET,Advertising_Classical_No_Resolve,REJECT
   - RULE-SET,OpenAI_No_Resolve,OpenAI
   - RULE-SET,Anthropic,Anthropic
