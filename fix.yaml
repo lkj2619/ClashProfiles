@@ -6,4 +6,4 @@ payload:
   ## 美客多
   - DOMAIN-SUFFIX,mercadolibre.com
   ## 划词翻译
-  - DOMAIN,hcfy.ai
+  - DOMAIN-SUFFIX,hcfy.ai
