@@ -7,3 +7,5 @@ payload:
   - DOMAIN-SUFFIX,mercadolibre.com
   ## 划词翻译
   - DOMAIN-SUFFIX,hcfy.ai
+  ## 汇丰银行
+  - DOMAIN-SUFFIX,hsbc.com.hk
