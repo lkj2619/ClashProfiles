@@ -9,3 +9,5 @@ payload:
   - DOMAIN-SUFFIX,hcfy.ai
   ## 汇丰银行
   - DOMAIN-SUFFIX,hsbc.com.hk
+  ## 肯の机机场支付链接
+  - DOMAIN,api.payjinli.com
