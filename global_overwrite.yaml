@@ -1,6 +1,7 @@
 mode: rule
 log-level: info
 ipv6: false
+tcp-concurrent: true
 
 tun:
   enable: true
@@ -36,6 +37,9 @@ dns:
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
+  nameserver-policy:
+    "geosite:cn":
+      - https://dns.alidns.com/dns-query
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
@@ -66,43 +70,35 @@ proxy-groups:
       - "全部节点"
       - DIRECT
 
-  - name: "自动选择"
-    type: url-test
-    include-all: true
-    exclude-type: direct
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-
   - name: "香港"
     type: select
     include-all: true
     exclude-type: direct
-    filter: "香港 | HK|Hong|🇭🇰"
+    filter: "香港 | HK|HK |Hong|🇭🇰"
 
   - name: "台湾"
     type: select
     include-all: true
     exclude-type: direct
-    filter: "台湾 | TW|Taiwan|Wan|🇨🇳|🇹🇼"
+    filter: "台湾 | TW|TW |Taiwan|Wan|🇨🇳|🇹🇼"
 
   - name: "日本"
     type: select
     include-all: true
     exclude-type: direct
-    filter: "日本 | JP|Japan|🇯🇵"
+    filter: "日本 | JP|JP |Japan|🇯🇵"
 
   - name: "新加坡"
     type: select
     include-all: true
     exclude-type: direct
-    filter: "新加坡 | 狮城 | SG|Singapore|🇸🇬"
+    filter: "新加坡 | 狮城 | SG|SG |Singapore|🇸🇬"
 
   - name: "美国"
     type: select
     include-all: true
     exclude-type: direct
-    filter: "美国 | US|United States|America|🇺🇸"
+    filter: "美国 | US|US |United States|America|🇺🇸"
 
   - name: "全部节点"
     type: select
@@ -154,7 +150,7 @@ rule-providers:
     format: yaml
     path: ./ruleset/Anthropic.yaml
     interval: 86400
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Anthropic/Anthropic.yaml"
+    url: "https://raw.githubusercontent.com/lkj2619/ClashProfiles/refs/heads/main/Anthropic.yaml"
   Microsoft_No_Resolve:
     type: http
     behavior: classical
@@ -162,6 +158,13 @@ rule-providers:
     path: ./ruleset/Microsoft_No_Resolve.yaml
     interval: 86400
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml"
+  Jetbrains_No_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Jetbrains_No_Resolve.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Jetbrains/Jetbrains_No_Resolve.yaml"
   Apple_Classical_No_Resolve:
     type: http
     behavior: classical
@@ -205,6 +208,7 @@ rules:
   - RULE-SET,Anthropic,Anthropic
   - RULE-SET,Lan_No_Resolve,DIRECT
   - RULE-SET,Microsoft_No_Resolve,DIRECT
+  - RULE-SET,Jetbrains_No_Resolve,DIRECT
   - RULE-SET,ChinaMax_Classical_No_IPv6_No_Resolve,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,漏网之鱼
