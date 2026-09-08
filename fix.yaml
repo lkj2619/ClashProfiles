@@ -13,6 +13,8 @@ payload:
   - DOMAIN-SUFFIX,mercadolibre.com
   ## 划词翻译
   - DOMAIN-SUFFIX,hcfy.ai
+  ## 沉浸式翻译
+  - DOMAIN-SUFFIX,immersivetranslate.com
   ## 汇丰银行
   - DOMAIN-SUFFIX,hsbc.com.hk
   ## 肯の机机场支付链接
