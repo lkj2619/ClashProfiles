@@ -1,5 +1,11 @@
 # 修正被误击或污染的分流规则
 payload:
+  ## 公司服务器
+  - DOMAIN,proxy.ezshopping.top
+  - DOMAIN,proxy.haiqitech.com
+  - IP-CIDR,10.100.1.9/32,no-resolve
+  ## 通途
+  - DOMAIN,open.tongtool.com
   ## 掘金
   - DOMAIN-SUFFIX,juejin.cn
   - DOMAIN-SUFFIX,juejin.im
@@ -7,6 +13,8 @@ payload:
   - DOMAIN-SUFFIX,mercadolibre.com
   ## 划词翻译
   - DOMAIN-SUFFIX,hcfy.ai
+  ## 沉浸式翻译
+  - DOMAIN-SUFFIX,immersivetranslate.com
   ## 汇丰银行
   - DOMAIN-SUFFIX,hsbc.com.hk
   ## 肯の机机场支付链接
