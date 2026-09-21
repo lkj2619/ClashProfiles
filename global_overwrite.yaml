@@ -170,6 +170,13 @@ rule-providers:
     path: ./ruleset/Microsoft_No_Resolve.yaml
     interval: 86400
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml"
+  Amazon_No_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Amazon_No_Resolve.yaml
+    interval: 86400
+    url: "https://raw.githubusercontent.com/lkj2619/ios_rule_script/refs/heads/master/rule/Clash/Amazon/Amazon_No_Resolve.yaml"
   Jetbrains_No_Resolve:
     type: http
     behavior: classical
@@ -216,6 +223,7 @@ rule-providers:
 rules:
   - RULE-SET,fix,DIRECT
   - RULE-SET,Advertising_Classical_No_Resolve,REJECT
+  - RULE-SET,Amazon_No_Resolve,DIRECT
   - RULE-SET,OpenAI_No_Resolve,OpenAI
   - RULE-SET,Anthropic,Anthropic
   - RULE-SET,Lan_No_Resolve,DIRECT
