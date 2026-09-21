@@ -11,10 +11,12 @@ payload:
   - DOMAIN-SUFFIX,juejin.im
   ## 美客多
   - DOMAIN-SUFFIX,mercadolibre.com
-  ## 划词翻译
+  ## 划词翻译浏览器扩展
   - DOMAIN-SUFFIX,hcfy.ai
-  ## 沉浸式翻译
+  ## 沉浸式翻译浏览器扩展
   - DOMAIN-SUFFIX,immersivetranslate.com
+  ## 鼠标手势浏览器扩展
+  - DOMAIN-SUFFIX,mousegesturesapi.com
   ## 汇丰银行
   - DOMAIN-SUFFIX,hsbc.com.hk
   ## 肯の机机场支付链接
