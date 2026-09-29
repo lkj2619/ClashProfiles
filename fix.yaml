@@ -1,5 +1,7 @@
 # 修正被误击或污染的分流规则
 payload:
+  ## Amazon AD
+  - DOMAIN,advertising.amazon.com
   ## 公司服务器
   - DOMAIN,proxy.ezshopping.top
   - DOMAIN,proxy.haiqitech.com
