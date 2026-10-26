@@ -60,6 +60,10 @@ hosts:
   bepbjbgp01.114837322.xyz: fe5c432e-59f5-11f1.88223163.xyz
   bepgzbgp01.114837322.xyz: fe5c432e-59f5-11f2.88223163.xyz
   bepshbgp01.114837322.xyz: fe5c432e-59f5-11f3.88223163.xyz
+  6047f413-ad53.163cdn-ai.net: 9f6072cc-59fb-11f.163cdn-ai.net
+  bepbjbgp01.163cdn-ai.net: fe5c432e-59f5-11f1.163cdn-ai.net
+  bepgzbgp01.163cdn-ai.net: fe5c432e-59f5-11f2.163cdn-ai.net
+  bepshbgp01.163cdn-ai.net: fe5c432e-59f5-11f3.163cdn-ai.net
 
 proxy-groups:
   - name: "节点选择"
