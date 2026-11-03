@@ -3,6 +3,7 @@ payload:
   ## Amazon AD
   - DOMAIN,advertising.amazon.com
   ## 公司服务器
+  - DOMAIN,cjinternal.estonapi.top
   - DOMAIN,proxy.ezshopping.top
   - DOMAIN,proxy.haiqitech.com
   - IP-CIDR,10.100.1.9/32,no-resolve
