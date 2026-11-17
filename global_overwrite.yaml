@@ -41,8 +41,11 @@ dns:
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
+  proxy-server-nameserver-policy:
+    '+.163cdn-ai.net': 'udp://127.0.0.1:1053'
   nameserver-policy:
-    "geosite:cn":
+    '+.163cdn-ai.net': 'https://dns.alidns.com/dns-query#DIRECT'
+    'geosite:cn':
       - https://dns.alidns.com/dns-query
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
@@ -54,16 +57,13 @@ dns:
     - "+.msftncsi.com"
     - "time.*.com"
     - "+.pool.ntp.org"
+    - +.163cdn-ai.net
 
 hosts:
-  6047f413-ad53.114837322.xyz: 9f6072cc-59fb-11f.88223163.xyz
-  bepbjbgp01.114837322.xyz: fe5c432e-59f5-11f1.88223163.xyz
-  bepgzbgp01.114837322.xyz: fe5c432e-59f5-11f2.88223163.xyz
-  bepshbgp01.114837322.xyz: fe5c432e-59f5-11f3.88223163.xyz
-  6047f413-ad53.163cdn-ai.net: 9f6072cc-59fb-11f.163cdn-ai.net
-  bepbjbgp01.163cdn-ai.net: fe5c432e-59f5-11f1.163cdn-ai.net
-  bepgzbgp01.163cdn-ai.net: fe5c432e-59f5-11f2.163cdn-ai.net
-  bepshbgp01.163cdn-ai.net: fe5c432e-59f5-11f3.163cdn-ai.net
+  6047f413-ad53.163cdn-ai.net: 9c6072fc-59fb-11f.163cdn-ai.net
+  bepbjbgp01.163cdn-ai.net: ef5c432e-59f5-11f1.163cdn-ai.net
+  bepgzbgp01.163cdn-ai.net: ef5c432e-59f5-11f2.163cdn-ai.net
+  bepshbgp01.163cdn-ai.net: ef5c432e-59f5-11f3.163cdn-ai.net
 
 proxy-groups:
   - name: "节点选择"
@@ -90,31 +90,36 @@ proxy-groups:
     type: select
     include-all: true
     exclude-type: direct
-    filter: "香港 | HK|HK |Hong|🇭🇰"
+    empty-fallback: REJECT
+    filter: '(?i)香港|🇭🇰|(?:^|[^a-z0-9])(?:HKG?|Hong[ _-]*Kong)(?:[0-9]|[^a-z0-9]|$)'
 
   - name: "台湾"
     type: select
     include-all: true
     exclude-type: direct
-    filter: "台湾 | TW|TW |Taiwan|Wan|🇨🇳|🇹🇼"
+    empty-fallback: REJECT
+    filter: '(?i)[台臺][湾灣]|🇹🇼|(?:^|[^a-z0-9])(?:TWN?|Taiwan)(?:[0-9]|[^a-z0-9]|$)'
 
   - name: "日本"
     type: select
     include-all: true
     exclude-type: direct
-    filter: "日本 | JP|JP |Japan|🇯🇵"
+    empty-fallback: REJECT
+    filter: '(?i)日本|🇯🇵|(?:^|[^a-z0-9])(?:JPN?|Japan)(?:[0-9]|[^a-z0-9]|$)'
 
   - name: "新加坡"
     type: select
     include-all: true
     exclude-type: direct
-    filter: "新加坡 | 狮城 | SG|SG |Singapore|🇸🇬"
+    empty-fallback: REJECT
+    filter: '(?i)新加坡|[狮獅]城|🇸🇬|(?:^|[^a-z0-9])(?:SGP?|Singapore)(?:[0-9]|[^a-z0-9]|$)'
 
   - name: "美国"
     type: select
     include-all: true
     exclude-type: direct
-    filter: "美国 | US|US |United States|America|🇺🇸"
+    empty-fallback: REJECT
+    filter: '(?i)美[国國]|🇺🇸|(?:^|[^a-z0-9])(?:USA?|United[ _-]+States)(?:[0-9]|[^a-z0-9]|$)'
 
   - name: "全部节点"
     type: select
@@ -235,9 +240,11 @@ rules:
   - RULE-SET,fix,DIRECT
   - RULE-SET,Advertising_Classical_No_Resolve,REJECT
   - RULE-SET,Amazon_No_Resolve,DIRECT
+  - RULE-SET,Apple_Classical_No_Resolve,DIRECT
+  - RULE-SET,AppleID_No_Resolve,DIRECT
   - RULE-SET,Shopee_No_Resolve,DIRECT
-  - RULE-SET,OpenAI_No_Resolve,OpenAI
   - RULE-SET,Anthropic,Anthropic
+  - RULE-SET,OpenAI_No_Resolve,OpenAI
   - RULE-SET,Lan_No_Resolve,DIRECT
   - RULE-SET,Microsoft_No_Resolve,DIRECT
   - RULE-SET,Jetbrains_No_Resolve,DIRECT
